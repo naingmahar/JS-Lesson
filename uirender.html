@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="./data.js"> </script>
+    <script src="./api.js"> </script>
+</head>
+<body>
+
+    <div id="list" class="row">
+    </div>
+
+
+    <script>
+        const image = "data:image/jpeg;base64,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"
+        const data = {
+                        "info":"Central Bank of Myanmar",
+                        "description":"Official Website of Central Bank of Myanmar",
+                        "timestamp":"1641974400",
+                        "rates":{
+                            "USD":"1,778.0",
+                            "HKD":"228.06",
+                            "BRL":"319.26",
+                            "MYR":"424.65",
+                            "RSD":"17.183",
+                            "CAD":"1,415.4",
+                            "GBP":"2,424.5",
+                            "SEK":"196.85",
+                            "NOK":"203.02",
+                            "ILS":"570.91",
+                            "AUD":"1,281.6",
+                            "DKK":"271.55",
+                            "RUB":"23.843",
+                            "KWD":"5,878.1",
+                            "INR":"24.035",
+                            "BND":"1,316.1",
+                            "EUR":"2,020.7",
+                            "ZAR":"114.59",
+                            "NPR":"15.019",
+                            "CNY":"279.36",
+                            "CHF":"1,924.2",
+                            "THB":"53.210",
+                            "PKR":"10.095",
+                            "KES":"15.686",
+                            "EGP":"112.91",
+                            "BDT":"20.680",
+                            "SAR":"473.70",
+                            "LAK":"15.769",
+                            "IDR":"12.418",
+                            "KHR":"43.632",
+                            "SGD":"1,316.1",
+                            "LKR":"8.8238",
+                            "NZD":"1,205.7",
+                            "JPY":"1,540.2",
+                            "CZK":"82.815",
+                            "VND":"7.8317",
+                            "PHP":"34.733",
+                            "KRW":"149.16"
+                        },
+                        "currencies":{
+                            "USD":"United State Dollar",
+                            "EUR":"Euro",
+                            "SGD":"Singapore Dollar",
+                            "GBP":"Pound Sterling",
+                            "CHF":"Swiss Franc",
+                            "JPY":"Japanese Yen",
+                            "AUD":"Australian Dollar",
+                            "BDT":"Bangladesh Taka",
+                            "BND":"Brunei Dollar",
+                            "KHR":"Cambodian Riel",
+                            "CAD":"Canadian Dollar",
+                            "CNY":"Chinese Yuan",
+                            "HKD":"Hong Kong Dollar",
+                            "INR":"Indian Rupee",
+                            "IDR":"Indonesian Rupiah",
+                            "KRW":"Korean Won",
+                            "LAK":"Lao Kip",
+                            "MYR":"Malaysian Ringgit",
+                            "NZD":"New Zealand Dollar",
+                            "PKR":"Pakistani Rupee",
+                            "PHP":"Philippines Peso",
+                            "LKR":"Sri Lankan Rupee",
+                            "THB":"Thai Baht",
+                            "VND":"Vietnamese Dong",
+                            "BRL":"Brazilian Real",
+                            "CZK":"Czech Koruna",
+                            "DKK":"Danish Krone",
+                            "EGP":"Egyptian Pound",
+                            "ILS":"Israeli Shekel",
+                            "KES":"Kenya Shilling",
+                            "KWD":"Kuwaiti Dinar",
+                            "NPR":"Nepalese Rupee",
+                            "NOK":"Norwegian Kroner",
+                            "RUB":"Russian Rouble",
+                            "SAR":"Saudi Arabian Riyal",
+                            "RSD":"Serbian Dinar",
+                            "ZAR":"South Africa Rand",
+                            "SEK":"Swedish Krona"
+                        }
+                        
+                    }
+        let rates = data.rates
+        let currencies = data.currencies
+
+        //["SGD","USD"]
+        let rateArr = Object.keys(rates)
+        console.log("Rates Arr",rateArr)
+
+        function cardGet(name,rate) {
+            
+            let template= `
+                <div class="card col-lg-2">
+                    <div class="card-body">
+                        <h4 class="card-title" style="color:gray">${name} </h4> <br /> 
+                        <h5>${rate}</h5>
+                    </div>
+                </div>
+            `     
+            return template
+        }
+
+        for (let index = 0; index < rateArr.length; index++) {
+
+            //index = 0 
+            //rateArr[0] = "USD" 
+            //rateKey = "USD" 
+            const rateKeys = rateArr[index] 
+
+            // restore = null
+            const restore = document.getElementById("list").innerHTML
+
+
+            //rates["USD"] = 1,778.0
+            //cardGet(name,rate)
+            //cardGet("USD",1,778.0)
+            
+            const ui = cardGet(currencies[rateKeys],rates[rateKeys]) 
+
+            document.getElementById("list").innerHTML = restore + ui
+        }
+
+    </script>
+    
+</body>
+</html>
