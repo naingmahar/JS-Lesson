@@ -1,4 +1,4 @@
-const township = [{
+const townships = [{
     "id": 1,
     "township_en": "Tamwe",
     "township_mm": "တာမွေ",
